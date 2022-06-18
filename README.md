@@ -9,21 +9,19 @@ The following is installed:
 
 I recommend using [scoop](https://scoop.sh/) for the installations.
 
-In an **elevated** PowerShell prompt add the `extras` bucket:
+After installing scoop, user **PowerShell** to install the necessary software:
 
 ```
-scoop bucket add extras
+scoop install git vim
 ```
 
-Then install the necessary software:
+For AutoHotkey, I recommend using the installer from their website:
 
-```
-scoop install git autohotkey-installer vim
-```
+<https://www.autohotkey.com/download/ahk-install.exe>
 
 ### Config files setup
 
-Clone the repository in the home directory:
+Using **Git Bash**, clone the repository in the home directory:
 
 ```sh
 git clone https://github.com/HerCerM/vmc.git "$HOME/vmc"
