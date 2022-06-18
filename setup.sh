@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This script is meant to be run in Git Bash, with the working directory in the vmc repository.
+# This script is meant to be run in Git Bash.
 
 printf 'This will DELETE SOME FILES. Read the script before running. Run script (y/n)? '
 read -r answer
