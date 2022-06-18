@@ -2,17 +2,26 @@
 
 The following is installed:
 
-- Git Bash
+- Git / Git Bash
+- AutoHotkey
 - GVim
 - Vim
 
-I recommend using [scoop](https://scoop.sh/) for the installations:
+I recommend using [scoop](https://scoop.sh/) for the installations.
+
+In an **elevated** PowerShell prompt add the `extras` bucket:
 
 ```
-scoop install git vim
+scoop bucket add extras
 ```
 
-### Installation
+Then install the necessary software:
+
+```
+scoop install git autohotkey-installer vim
+```
+
+### Config files setup
 
 Clone the repository in the home directory:
 

@@ -14,11 +14,14 @@ startup="$HOME/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup"
 vmc=$(cd "$(dirname "$0")" && pwd)
 
 # Remove files that will be replaced with symlinks.
-rm -vf "$HOME/_vimrc" "$HOME/_gvimrc" "$startup/vimc.ahk"
+rm -vf "$HOME/_vimrc" "$HOME/_gvimrc" "$startup/vmc.ahk"
 
 # Symlink vim config.
 ln -sv "$vmc/_vimrc" "$vmc/_gvimrc" "$HOME"
 
-# Symlink ahk config.
+# Symlink ahk script.
 ln -sv "$vmc/vmc.ahk" "$startup"
+
+# Run ahk script in the background.
+autohotkey.exe "$vmc/vmc.ahk" &
 
