@@ -126,7 +126,7 @@ nnoremap <Leader>D D
 vnoremap <Leader>d d
 
 " Toggle highlighting of search term.
-nnoremap <Leader>h <Cmd>set hlsearch!<CR>
+nnoremap <Leader>h :set hlsearch!<CR>
 
 " Enter block visual mode easily.
 nnoremap Q <C-q>
@@ -139,14 +139,14 @@ nnoremap <C-u> 8<C-u>
 nnoremap <C-d> 8<C-d>
 
 " More comfy scrolling through search matches.
-nnoremap n <Cmd>set hlsearch<CR>nzz
-nnoremap N <Cmd>set hlsearch<CR>Nzz
+nnoremap n :set hlsearch<CR>nzz
+nnoremap N :set hlsearch<CR>Nzz
 
 " Move lines up or down.
 vnoremap <C-k> :m '<-2<CR>gv
-nnoremap <C-k> <Cmd>m .-2<CR>
+nnoremap <C-k> :m .-2<CR>
 vnoremap <C-j> :m '>+1<CR>gv
-nnoremap <C-j> <Cmd>m .+1<CR>
+nnoremap <C-j> :m .+1<CR>
 
 " Add empty line below/above cursor with Enter/<Leader>Enter
 nnoremap <CR> v<ESC>o<ESC>gv<ESC>
@@ -155,7 +155,7 @@ vnoremap <CR> <ESC>'>o<ESC>gv
 vnoremap <Leader><CR> <ESC>'<O<ESC>gv
 
 " Delete current line without leaving normal mode.
-nnoremap <BS> <Cmd>s/.*//<CR>
+nnoremap <BS> :s/.*//<CR>
 
 " Break line at cursor position using <Leader>+s.
 nnoremap <Leader>s i<CR><ESC>
@@ -168,7 +168,11 @@ nnoremap <Leader>r @r
 nnoremap <Leader>a ggVG
 
 " Keep flags when repeating last substitution.
-nnoremap & <Cmd>&&<CR>
+nnoremap & :&&<CR>
+
+" Stay on current word when loading search criteria with word under cursor
+" using *. (The default behavior is to jump to the next match).
+nnoremap * *``
 
 " }}}
 
