@@ -54,7 +54,7 @@ set mouse=a
 " GUI-specific settings {{{
 " ---------------------
 
-set guifont=Consolas:h12
+set guifont=Consolas:h11
 
 " Remove toolbar and menubar.
 set guioptions-=T
