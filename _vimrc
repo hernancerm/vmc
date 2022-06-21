@@ -51,52 +51,6 @@ set mouse=a
 
 " }}}
 
-" GUI-specific settings {{{
-" ---------------------
-
-set guifont=Consolas:h11
-
-" Remove toolbar and menubar.
-set guioptions-=T
-set guioptions-=m
-
-" Credit goes to: https://vi.stackexchange.com/a/3104
-if has("gui_gtk2")
-  function! FontSizePlus ()
-    let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
-    let l:gf_size_whole = l:gf_size_whole + 1
-    let l:new_font_size = ' '.l:gf_size_whole
-    let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
-  endfunction
-  function! FontSizeMinus ()
-    let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
-    let l:gf_size_whole = l:gf_size_whole - 1
-    let l:new_font_size = ' '.l:gf_size_whole
-    let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
-  endfunction
-else
-  function! FontSizePlus ()
-    let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
-    let l:gf_size_whole = l:gf_size_whole + 1
-    let l:new_font_size = ':h'.l:gf_size_whole
-    let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
-  endfunction
-  function! FontSizeMinus ()
-    let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
-    let l:gf_size_whole = l:gf_size_whole - 1
-    let l:new_font_size = ':h'.l:gf_size_whole
-    let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
-  endfunction
-endif
-
-" Easily resize the guifont.
-if has("gui_running")
-  nnoremap <F9> :call FontSizeMinus()<CR>
-  nnoremap <F10> :call FontSizePlus()<CR>
-endif
-
-" }}}
-
 " Basic remappings {{{
 " ----------------
 
@@ -124,9 +78,6 @@ vnoremap <Leader>p p
 nnoremap <Leader>d d
 nnoremap <Leader>D D
 vnoremap <Leader>d d
-
-" Toggle highlighting of search term.
-nnoremap <Leader>h :set hlsearch!<CR>
 
 " Enter block visual mode easily.
 nnoremap Q <C-q>
@@ -173,6 +124,55 @@ nnoremap & :&&<CR>
 " Stay on current word when loading search criteria with word under cursor
 " using *. (The default behavior is to jump to the next match).
 nnoremap * *``
+
+" Remove search highlighting.
+nnoremap <C-l> :set nohlsearch<CR>
+
+" }}}
+
+" GUI-only settings {{{
+" -----------------
+
+set guifont=Consolas:h11
+
+" Remove toolbar and menubar.
+set guioptions-=T
+set guioptions-=m
+
+" Credit goes to: https://vi.stackexchange.com/a/3104
+if has("gui_gtk2")
+  function! FontSizePlus ()
+    let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
+    let l:gf_size_whole = l:gf_size_whole + 1
+    let l:new_font_size = ' '.l:gf_size_whole
+    let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
+  endfunction
+  function! FontSizeMinus ()
+    let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
+    let l:gf_size_whole = l:gf_size_whole - 1
+    let l:new_font_size = ' '.l:gf_size_whole
+    let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
+  endfunction
+else
+  function! FontSizePlus ()
+    let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
+    let l:gf_size_whole = l:gf_size_whole + 1
+    let l:new_font_size = ':h'.l:gf_size_whole
+    let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
+  endfunction
+  function! FontSizeMinus ()
+    let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
+    let l:gf_size_whole = l:gf_size_whole - 1
+    let l:new_font_size = ':h'.l:gf_size_whole
+    let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
+  endfunction
+endif
+
+" Easily resize the guifont.
+if has("gui_running")
+  nnoremap <F9> :call FontSizeMinus()<CR>
+  nnoremap <F10> :call FontSizePlus()<CR>
+endif
 
 " }}}
 
