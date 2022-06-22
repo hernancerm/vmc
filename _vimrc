@@ -111,9 +111,8 @@ nnoremap <BS> :s/.*//<CR>
 " Break line at cursor position using <Leader>+s.
 nnoremap <Leader>s i<CR><ESC>
 
-" Handy macros without typing @.
-nnoremap <Leader>e @e
-nnoremap <Leader>r @r
+" Repeat last command-line command easily.
+nnoremap <C-p> @:
 
 " Select all contents in the file.
 nnoremap <Leader>a ggVG
@@ -138,6 +137,13 @@ set guifont=Consolas:h11
 " Remove toolbar and menubar.
 set guioptions-=T
 set guioptions-=m
+
+" Remove scroll bars.
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b
 
 " Credit goes to: https://vi.stackexchange.com/a/3104
 if has("gui_gtk2")
