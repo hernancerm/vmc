@@ -51,10 +51,6 @@ if (-not (has-command 'scoop')) {
 # Install initial software.
 scoop install git vim
 
-# Install AutoHotkey, will open UAC prompt.
-scoop bucket add extras
-scoop install autohotkey-installer
-
 # Install Iosevka Nerd Font.
 scoop bucket add nerd-fonts
 scoop install Iosevka-NF-Mono
@@ -90,8 +86,4 @@ create-symbolic-link -link "$chome\_gvimrc" -target "$vmc\_gvimrc"
 # AutoHotkey script file.
 $startup = "$chome\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 create-symbolic-link -link "$startup\vmc.ahk" -target "$vmc\vmc.ahk"
-
-# Start AutoHotkey script without blocking the interactive shell session.
-$start_ahk = { param($chome) autohotkey "$chome\vmc\vmc.ahk" }
-start-job $start_ahk -arg $chome
 
