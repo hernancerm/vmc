@@ -1,35 +1,21 @@
-### Pre-requirements
+### Installation
 
-The following is installed:
+Open a PowerShell console with **administrator priviliges**, and change the execution policy:
 
-- Git / Git Bash
-- AutoHotkey
-- GVim
-- Vim
-
-I recommend using [scoop](https://scoop.sh/) for the installations.
-
-After installing scoop, user **PowerShell** to install the necessary software:
-
-```
-scoop install git vim
+```text
+set-executionPolicy -scope currentUser unrestricted
 ```
 
-For AutoHotkey, I recommend using the installer from their website:
+Run the installation script:
 
-<https://www.autohotkey.com/download/ahk-install.exe>
-
-### Config files setup
-
-Using **Git Bash**, clone the repository in the home directory:
-
-```sh
-git clone https://github.com/HerCerM/vmc.git "$HOME/vmc"
+```text
+irm https://raw.githubusercontent.com/HerCerM/vmc/main/setup.ps1 | iex
 ```
 
-Run the setup script:
+### After installation
 
-```
-sh -- $HOME/vmc/setup.sh
-```
+I recommend to set back the execution policy to its default value:
 
+```text
+set-executionPolicy -scope currentUser restricted
+```
