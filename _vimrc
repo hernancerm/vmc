@@ -132,18 +132,26 @@ nnoremap <C-l> :set nohlsearch<CR>
 " GUI-only settings {{{
 " -----------------
 
-set guifont=Consolas:h11
+" Easily resize the guifont.
+if has("gui_running")
 
-" Remove toolbar and menubar.
-set guioptions-=T
-set guioptions-=m
+  " GUI font.
+  set guifont=Iosevka\ NF:h11
 
-" Remove scroll bars.
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
-set guioptions-=b
+  nnoremap <F9> :call FontSizeMinus()<CR>
+  nnoremap <F10> :call FontSizePlus()<CR>
+
+  " Remove toolbar and menubar.
+  set guioptions-=T
+  set guioptions-=m
+
+  " Remove scroll bars.
+  set guioptions-=r
+  set guioptions-=R
+  set guioptions-=l
+  set guioptions-=L
+  set guioptions-=b
+endif
 
 " Credit goes to: https://vi.stackexchange.com/a/3104
 if has("gui_gtk2")
@@ -172,12 +180,6 @@ else
     let l:new_font_size = ':h'.l:gf_size_whole
     let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
   endfunction
-endif
-
-" Easily resize the guifont.
-if has("gui_running")
-  nnoremap <F9> :call FontSizeMinus()<CR>
-  nnoremap <F10> :call FontSizePlus()<CR>
 endif
 
 " }}}
