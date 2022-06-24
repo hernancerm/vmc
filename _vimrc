@@ -46,6 +46,9 @@ set shiftwidth=0
 " Create window splits in more comfortable positions.
 set splitright splitbelow
 
+" Use PowerShell as the shell.
+set shell=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+
 " Enable mouse interaction.
 set mouse=a
 
