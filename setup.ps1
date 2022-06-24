@@ -3,6 +3,20 @@
 # Before running, make sure to set the execution policy to unrestricted:
 # set-executionPolicy -scope currentUser unrestricted
 
+# Pick the user to use for the script and set the 'chosen home'.
+$user = read-host -prompt `
+    "Which user do you want to configure? (leave blank to use '$env:username')"
+if (-not $user) {
+  $user = $env:username
+}
+# Verify chosen user exists.
+$user_list = (get-localUser).name
+if (-not $user_list.contains($user)) {
+  write-error "The user '$user' does not exist."
+  exit 1
+}
+$chome = "C:\Users\$user"
+
 # Install scoop, if the scoop command is not available.
 function has-command {
   param(
@@ -38,7 +52,7 @@ function has-file {
   }
   return $false
 }
-$vmc = "$HOME\vmc"
+$vmc = "$chome\vmc"
 if (-not (has-file "$vmc")) { 
   git clone https://github.com/HerCerM/vmc.git "$vmc"
 }
@@ -54,12 +68,13 @@ function create-symbolic-link {
   sudo new-item -path "$link" -itemType symbolicLink -value "$target"
 }
 # Vim configuraton files.
-create-symbolic-link -link "~\_vimrc" -target "$vmc\_vimrc"
-create-symbolic-link -link "~\_gvimrc" -target "$vmc\_gvimrc"
+create-symbolic-link -link "$chome\_vimrc" -target "$vmc\_vimrc"
+create-symbolic-link -link "$chome\_gvimrc" -target "$vmc\_gvimrc"
 # AutoHotkey script file.
-$startup = "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+$startup = "$chome\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 create-symbolic-link -link "$startup\vmc.ahk" -target "$vmc\vmc.ahk"
 
 # Start AutoHotkey script without blocking the interactive shell session.
-start-job -scriptBlock { autohotkey "$HOME\vmc\vmc.ahk" }
+$start_ahk = { param($chome) autohotkey "$chome\vmc\vmc.ahk" }
+start-job $start_ahk -arg $chome
 
