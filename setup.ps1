@@ -60,6 +60,6 @@ create-symbolic-link -link "~\_gvimrc" -target "$vmc\_gvimrc"
 $startup = "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 create-symbolic-link -link "$startup\vmc.ahk" -target "$vmc\vmc.ahk"
 
-# Start AutoHotkey script.
-autohotkey "$vmc\vmc.ahk"
+# Start AutoHotkey script without blocking the interactive shell session.
+start-job -scriptBlock { autohotkey "$HOME\vmc\vmc.ahk" }
 
