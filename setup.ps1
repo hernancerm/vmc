@@ -32,11 +32,11 @@ if (-not (has-command 'scoop')) {
 }
 
 # Install initial software.
-scoop install git sudo vim
+scoop install git vim
 
 # Install AutoHotkey, will open UAC prompt.
 scoop bucket add extras
-sudo scoop install autohotkey-installer
+scoop install autohotkey-installer
 
 # Install Iosevka Nerd Font.
 scoop bucket add nerd-fonts
@@ -65,7 +65,7 @@ function create-symbolic-link {
   )
   # Remove conflicting file, if any.
   remove-item -path "$link" -errorAction silentlyContinue
-  sudo new-item -path "$link" -itemType symbolicLink -value "$target"
+  new-item -path "$link" -itemType symbolicLink -value "$target"
 }
 # Vim configuraton files.
 create-symbolic-link -link "$chome\_vimrc" -target "$vmc\_vimrc"
