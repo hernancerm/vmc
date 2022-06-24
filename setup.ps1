@@ -3,6 +3,7 @@
 # Before running, make sure to set the execution policy to unrestricted:
 # set-executionPolicy -scope currentUser unrestricted
 
+# Verify admin priviliges are granted for the current session.
 function has-admin-privilege {
   $identity = [system.security.principal.windowsIdentity]::getCurrent()
   $principal = new-object system.security.principal.windowsprincipal($identity)
@@ -14,7 +15,6 @@ function has-admin-privilege {
     return $false
   }
 }
-
 if (-not (has-admin-privilege)) {
   write-error "Please run the script in a session with admin privileges"
   exit 1
@@ -26,13 +26,22 @@ $user = read-host -prompt `
 if (-not $user) {
   $user = $env:username
 }
-# Verify chosen user exists.
-$user_list = (get-localUser).name
-if (-not $user_list.contains($user)) {
-  write-error "The user '$user' does not exist."
-  exit 1
+
+# Verify the chosen user has a home directory.
+function has-file {
+  param(
+    [string] $filepath
+  )
+  if (get-item "$filepath" -errorAction silentlyContinue) { 
+    return $true
+  }
+  return $false
 }
 $chome = "C:\Users\$user"
+if (-not (has-file "$chome")) {
+  write-error "The user '$user' is not valid." 
+  exit 1
+}
 
 # Install scoop, if the scoop command is not available.
 function has-command {
@@ -56,15 +65,6 @@ scoop bucket add nerd-fonts
 scoop install Iosevka-NF-Mono
 
 # Clone vmc repository, if not already cloned.
-function has-file {
-  param(
-    [string] $filepath
-  )
-  if (get-item "$filepath" -errorAction silentlyContinue) { 
-    return $true
-  }
-  return $false
-}
 $vmc = "$chome\vmc"
 if (-not (has-file "$vmc")) { 
   git clone https://github.com/HerCerM/vmc.git "$vmc"
