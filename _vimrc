@@ -115,7 +115,7 @@ function! InvokeCrNormalMode()
 endfunction
 
 " Add empty line below/above cursor with Enter/<Leader>Enter
-nnoremap <CR> <Cmd> call InvokeCrNormalMode()<CR>
+nnoremap <CR> :call InvokeCrNormalMode()<CR>
 nnoremap <Leader><CR> v<ESC>O<ESC>gv<ESC>
 vnoremap <CR> <ESC>'>o<ESC>gv
 vnoremap <Leader><CR> <ESC>'<O<ESC>gv
