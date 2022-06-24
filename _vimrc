@@ -99,8 +99,20 @@ nnoremap <C-k> :m .-2<CR>
 vnoremap <C-j> :m '>+1<CR>gv
 nnoremap <C-j> :m .+1<CR>
 
+function! InvokeCrNormalMode()
+  " Buffers in which CR behaves normally.
+  let l:normalCrBuffers = {
+    \ '[Command Line]': '',
+  \}
+  if has_key(l:normalCrBuffers, bufname('%'))
+    exe "normal! \<CR>"
+  else
+    exe "normal! v\<ESC>o\<ESC>gv\<ESC>"
+  endif
+endfunction
+
 " Add empty line below/above cursor with Enter/<Leader>Enter
-nnoremap <CR> v<ESC>o<ESC>gv<ESC>
+nnoremap <CR> <Cmd> call InvokeCrNormalMode()<CR>
 nnoremap <Leader><CR> v<ESC>O<ESC>gv<ESC>
 vnoremap <CR> <ESC>'>o<ESC>gv
 vnoremap <Leader><CR> <ESC>'<O<ESC>gv
@@ -138,8 +150,9 @@ if has("gui_running")
   " GUI font.
   set guifont=Iosevka\ NF:h11
 
-  nnoremap <F9> :call FontSizeMinus()<CR>
-  nnoremap <F10> :call FontSizePlus()<CR>
+  " Window initial size.
+  set lines=30
+  set columns=120
 
   " Remove toolbar and menubar.
   set guioptions-=T
@@ -151,6 +164,9 @@ if has("gui_running")
   set guioptions-=l
   set guioptions-=L
   set guioptions-=b
+
+  nnoremap <F9> :call FontSizeMinus()<CR>
+  nnoremap <F10> :call FontSizePlus()<CR>
 endif
 
 " Credit goes to: https://vi.stackexchange.com/a/3104
