@@ -211,10 +211,7 @@ endif
 syntax on
 
 " Color scheme.
-colorscheme zellner
-
-" Color scheme overrides.
-hi! Comment ctermfg=gray guifg=gray60
+colorscheme darkblue
 
 " }}}
 
