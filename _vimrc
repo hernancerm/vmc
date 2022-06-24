@@ -143,15 +143,16 @@ nnoremap <C-l> :set nohlsearch<CR>
 
 " GUI-only settings {{{
 " -----------------
-
 " Easily resize the guifont.
+
 if has("gui_running")
 
-  " GUI font.
-  set guifont=Iosevka\ NF:h11
+  " GUI font and line spacing.
+  set guifont=Iosevka\ NF:h10
+  set linespace=4
 
   " Window initial size.
-  set lines=30
+  set lines=25
   set columns=120
 
   " Remove toolbar and menubar.
