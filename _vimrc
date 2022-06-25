@@ -92,10 +92,6 @@ nnoremap Y yg_
 nnoremap <C-u> 8<C-u>
 nnoremap <C-d> 8<C-d>
 
-" More comfy scrolling through search matches.
-nnoremap n :set hlsearch<CR>nzz
-nnoremap N :set hlsearch<CR>Nzz
-
 " Move lines up or down.
 vnoremap <C-k> :m '<-2<CR>gv
 nnoremap <C-k> :m .-2<CR>
@@ -135,9 +131,13 @@ nnoremap <Leader>a ggVG
 " Keep flags when repeating last substitution.
 nnoremap & :&&<CR>
 
-" Stay on current word when loading search criteria with word under cursor
-" using *. (The default behavior is to jump to the next match).
-nnoremap * *``
+" More comfy scrolling through search matches.
+nnoremap <silent> n mz`z:set hlsearch<CR>nzz
+nnoremap <silent> N mz`z:set hlsearch<CR>Nzz
+
+" Make asterisk load a search pattern rather than jump to next match.
+nnoremap <silent> * mz`z"zyiw/\C\<<C-r>z\><CR>``:set hlsearch<CR>
+vnoremap <silent> * mz`z"zy/<C-r>z<CR>``:set hlsearch<CR>
 
 " Remove search highlighting.
 nnoremap <C-l> :set nohlsearch<CR>
