@@ -1,3 +1,5 @@
+; vim:textwidth=80:colorcolumn=80:comments+=\:;
+
 #SingleInstance Force
 SetCapsLockState Off
 
@@ -6,7 +8,6 @@ SetCapsLockState Off
   ; - Press it once: escape.
   ; - Hold and press another key: ctrl.
   ; - Hold shift before pessing: good ol' capslock.
-  ; https://www.autohotkey.com/board/topic/104173-capslock-to-control-and-escape/?p=669777
   CapsLock::
     key=
     Input key, B C L1 T60, {Esc}
