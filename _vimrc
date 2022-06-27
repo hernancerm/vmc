@@ -210,9 +210,14 @@ endif
 " Enably syntax highlight.
 syntax on
 
-" Color scheme.
-" For PowerShell as integrated terminal use 'darkblue'.
-colorscheme zellner
+" Set default color schemes.
+if has("gui_running")
+  " For the integrated gVim terminal, use 'darkblue'.
+  colorscheme zellner
+else
+  " Best built-in color scheme for PowerShell.
+  colorscheme industry
+endif
 
 " }}}
 
