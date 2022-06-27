@@ -211,7 +211,8 @@ endif
 syntax on
 
 " Color scheme.
-colorscheme darkblue
+" For PowerShell as integrated terminal use 'darkblue'.
+colorscheme zellner
 
 " }}}
 
