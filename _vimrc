@@ -49,6 +49,9 @@ set splitright splitbelow
 " Use PowerShell as the shell.
 set shell=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
 
+" Keep colorcolumn always one unit greater than textwidth.
+set colorcolumn=+1
+
 " Enable mouse interaction.
 set mouse=a
 
