@@ -1,4 +1,4 @@
-" vim:fileencoding=utf-8:foldmethod=marker
+" vim:fileencoding=utf-8:foldmethod=marker:tw=80:comments+=\:"
 
 " Basic settings {{{
 " --------------
@@ -23,8 +23,8 @@ set backspace=indent,eol,start
 
 " Go to matching text while searching.
 set incsearch
-" Search case insensitive when search pattern only has lowercase letters.
-" When an uppercase letter is put in the pattern, search case sensitive.
+" Search case insensitive when search pattern only has lowercase letters. When
+" an uppercase letter is put in the pattern, search case sensitive.
 set ignorecase smartcase
 
 " Provide context lines above and below cursor.
@@ -36,9 +36,10 @@ set expandtab
 " setting as the 'size of the tab', either when it's expaned into spaces and
 " when an actual tab character is placed.
 set tabstop=2
-" Preserve the indentin of the current line when creating new lines, and mind the
-" syntax of the current language when deciding to perfom some auto indentation.
-" Notice that 'shiftwidth=0' makes auto indenting use the size defined by 'tabstop'.
+" Preserve the indentin of the current line when creating new lines, and mind
+" the syntax of the current language when deciding to perfom some auto
+" indentation.  Notice that 'shiftwidth=0' makes auto indenting use the size
+" defined by 'tabstop'.
 set autoindent
 set smartindent
 set shiftwidth=0
@@ -75,22 +76,28 @@ function! DisableSoftWrap()
   nnoremap k k
 endfunction
 function! ToggleSoftWrap()
-  " To learn about the `&wrap` syntax, refer to options as variables:
-  " https://learnvimscriptthehardway.stevelosh.com/chapters/19.html#options-as-variables
   if &wrap
     call DisableSoftWrap()
     echo "Soft wrap OFF"
   else
-    " Supposedly `nolist` is required, but it's working fine without it.
+    " Supposedly 'nolist' is required, but it's working fine without it.
     call EnableSoftWrap()
     echo "Soft wrap ON"
+  endif
+endfunction
+
+" Execute an ex mode command on buffer first enter.
+function! ExecCmdOnBufFirstEnter(command)
+  if !exists('b:bufHasBeenEntered')
+    let b:bufHasBeenEntered = 1
+    execute a:command
   endif
 endfunction
 
 augroup BasicSettings
   au!
   " Default to no soft wrap on every new buffer.
-  au BufEnter * call ExecCmdOnBufFirstEnter(":call DisableSoftWrap()", "ex")
+  au BufEnter * call ExecCmdOnBufFirstEnter(":call DisableSoftWrap()")
 augroup END
 
 " }}}
