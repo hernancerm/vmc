@@ -55,6 +55,44 @@ set colorcolumn=+1
 " Enable mouse interaction.
 set mouse=a
 
+" Soft wrap utility functions.
+function! EnableSoftWrap()
+  setlocal wrap linebreak
+  nnoremap 0 g0
+  nnoremap $ g$
+  nnoremap g0 0
+  nnoremap g$ $
+  nnoremap j gj
+  nnoremap k gk
+endfunction
+function! DisableSoftWrap()
+  setlocal nowrap
+  nnoremap 0 0
+  nnoremap $ $
+  nnoremap g0 g0
+  nnoremap g$ g$
+  nnoremap j j
+  nnoremap k k
+endfunction
+function! ToggleSoftWrap()
+  " To learn about the `&wrap` syntax, refer to options as variables:
+  " https://learnvimscriptthehardway.stevelosh.com/chapters/19.html#options-as-variables
+  if &wrap
+    call DisableSoftWrap()
+    echo "Soft wrap OFF"
+  else
+    " Supposedly `nolist` is required, but it's working fine without it.
+    call EnableSoftWrap()
+    echo "Soft wrap ON"
+  endif
+endfunction
+
+augroup BasicSettings
+  au!
+  " Default to no soft wrap on every new buffer.
+  au BufEnter * call ExecCmdOnBufFirstEnter(":call DisableSoftWrap()", "ex")
+augroup END
+
 " }}}
 
 " Basic remappings {{{
@@ -145,6 +183,9 @@ vnoremap <silent> * mz`z"zy/<C-r>z<CR>``:set hlsearch<CR>
 " Remove search highlighting.
 nnoremap <C-l> :set nohlsearch<CR>
 
+" Toggle soft wrap easily.
+nnoremap <Leader>w <Cmd>call ToggleSoftWrap()<CR>
+
 " }}}
 
 " GUI-only settings {{{
@@ -212,6 +253,9 @@ endif
 
 " Enably syntax highlight.
 syntax on
+
+" Display line bleeding indicator on disabled soft wrap.
+set list listchars=extends:>,precedes:<
 
 " Set default color schemes.
 if has("gui_running")
