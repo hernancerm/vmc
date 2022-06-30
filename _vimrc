@@ -170,9 +170,6 @@ nnoremap <BS> :s/.*//<CR>
 " Break line at cursor position using <Leader>+s.
 nnoremap <Leader>s i<CR><ESC>
 
-" Repeat last command-line command easily.
-nnoremap <C-p> @:
-
 " Select all contents in the file.
 nnoremap <Leader>a ggVG
 
