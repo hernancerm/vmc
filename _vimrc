@@ -16,7 +16,8 @@ set noswapfile
 set number relativenumber
 
 " Disable the annoying bell.
-set belloff=all vb t_vb=
+set belloff=all
+set vb t_vb=
 
 " Allow backspace to work before insert point.
 set backspace=indent,eol,start
@@ -28,7 +29,7 @@ set incsearch
 set ignorecase smartcase
 
 " Provide context lines above and below cursor.
-set scrolloff=4
+set scrolloff=2
 
 " Insert spaces insteads of tabs.
 set expandtab
@@ -184,11 +185,11 @@ nnoremap <silent> N mz`z:set hlsearch<CR>Nzz
 nnoremap <silent> * mz`z"zyiw/\C\<<C-r>z\><CR>``:set hlsearch<CR>
 vnoremap <silent> * mz`z"zy/<C-r>z<CR>``:set hlsearch<CR>
 
-" Remove search highlighting.
-nnoremap <C-l> :set nohlsearch<CR>
-
 " Toggle soft wrap easily.
 nnoremap <Leader>w <Cmd>call ToggleSoftWrap()<CR>
+
+" Cancel search highlight (same as <C-l>).
+nnoremap <silent> <Leader>k :set nohlsearch<CR>:redraw<CR>
 
 " }}}
 
