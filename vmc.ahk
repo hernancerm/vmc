@@ -1,4 +1,4 @@
-; vim:textwidth=80:colorcolumn=80:comments+=\:;
+; vim:fenc=utf-8:tw=80:com+=\:;
 
 #SingleInstance Force
 SetCapsLockState Off

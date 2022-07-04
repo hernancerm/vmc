@@ -1,4 +1,4 @@
-" vim:fileencoding=utf-8:foldmethod=marker:tw=80:comments+=\:"
+" vim:fenc=utf-8:fdm=marker:tw=80:com+=\:"
 
 " Basic settings {{{
 " --------------
